@@ -10,9 +10,9 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=sinatragianpaolo&theme=dark&show_icons=true&count_private=true&hide_border=true&include_all_commits=true&rank_icon=github" height="170" alt="GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api?username=sinatragianpaolo&theme=dark&show_icons=true&hide_border=true" height="170" alt="GitHub Stats" />
 &nbsp;&nbsp;
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sinatragianpaolo&theme=dark&hide_border=true&layout=compact&langs_count=6&count_private=true" height="170" alt="Top Languages" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sinatragianpaolo&theme=dark&hide_border=true&layout=compact&langs_count=6" height="170" alt="Top Languages" />
 
 </div>
 
