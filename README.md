@@ -62,6 +62,6 @@
 
 <div align="center">
 
-*"Make it work, make it right, make it fast"*
+*`console.log('still debugging...')`*
 
 </div>
