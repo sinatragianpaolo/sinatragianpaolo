@@ -32,13 +32,13 @@
 <img src="https://skillicons.dev/icons?i=ts,nodejs,express,jest&theme=dark" alt="Backend skills" />
 
 **Frontend**<br/>
-<img src="https://skillicons.dev/icons?i=react,redux,vite,storybook&theme=dark" alt="Frontend skills" />
+<img src="https://skillicons.dev/icons?i=react,redux,vite,figma&theme=dark" alt="Frontend skills" />
 
 **Cloud & DevOps**<br/>
 <img src="https://skillicons.dev/icons?i=aws,docker,githubactions,mysql&theme=dark" alt="Cloud skills" />
 
 **AI & Automation**<br/>
-<img src="https://skillicons.dev/icons?i=openai,python&theme=dark" alt="AI skills" />
+<img src="https://skillicons.dev/icons?i=python,tensorflow&theme=dark" alt="AI skills" />
 
 </div>
 
