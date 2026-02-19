@@ -10,6 +10,8 @@
  *      - Last calendar month
  *
  * Updates three tables in README.md between COMMIT_STATS_START/END markers.
+ * Each table has 5 columns: Area | Commits | + Lines added | − Lines removed | Δ Net growth
+ * Note: --numstat triggers lazy blob fetching on blobless clones (slower but correct).
  *
  * Requires env var: GH_PAT (repo + read:org scopes)
  */
@@ -176,6 +178,27 @@ function countCommits(repoPath, after = null, before = null) {
   }
 }
 
+function countLines(repoPath, after = null, before = null) {
+  let cmd = `git -C "${repoPath}" log --author="${AUTHOR_EMAIL}" --all --numstat --pretty=format:`;
+  if (after) cmd += ` --after="${after}"`;
+  if (before) cmd += ` --before="${before}"`;
+  try {
+    const out = execSync(cmd, { stdio: "pipe" }).toString();
+    let added = 0, removed = 0;
+    for (const line of out.split("\n")) {
+      const parts = line.trim().split("\t");
+      // skip binary files (shown as "-") and empty lines
+      if (parts.length >= 2 && /^\d+$/.test(parts[0]) && /^\d+$/.test(parts[1])) {
+        added += parseInt(parts[0], 10);
+        removed += parseInt(parts[1], 10);
+      }
+    }
+    return { added, removed };
+  } catch {
+    return { added: 0, removed: 0 };
+  }
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 mkdirSync(CLONE_DIR, { recursive: true });
@@ -186,44 +209,63 @@ for (const { org, name } of REPOS) {
   repoPaths[name] = cloneRepo(org, name);
 }
 
-console.log("\nCounting commits...");
-const stats = {}; // stats[repoName] = { allTime, year, lastMonth }
+console.log("\nCounting commits and lines...");
+// stats[repoName] = { allTime, year, lastMonth }
+// each period = { commits, added, removed }
+const stats = {};
 
 for (const { name } of REPOS) {
   const path = repoPaths[name];
   if (!path) {
-    stats[name] = { allTime: 0, year: 0, lastMonth: 0 };
+    const empty = { commits: 0, added: 0, removed: 0 };
+    stats[name] = { allTime: empty, year: empty, lastMonth: empty };
     continue;
   }
+
+  const allTimeLines    = countLines(path);
+  const yearLines       = countLines(path, yearStart);
+  const lastMonthLines  = countLines(path, lastMonthStartStr, lastMonthEndStr);
+
   stats[name] = {
-    allTime: countCommits(path),
-    year: countCommits(path, yearStart),
-    lastMonth: countCommits(path, lastMonthStartStr, lastMonthEndStr),
+    allTime:   { commits: countCommits(path),                                   ...allTimeLines },
+    year:      { commits: countCommits(path, yearStart),                         ...yearLines },
+    lastMonth: { commits: countCommits(path, lastMonthStartStr, lastMonthEndStr), ...lastMonthLines },
   };
-  console.log(`  ${name}: ${stats[name].allTime} total / ${stats[name].year} this year / ${stats[name].lastMonth} last month`);
+
+  const s = stats[name];
+  console.log(
+    `  ${name}: ${s.allTime.commits} commits / +${s.allTime.added} −${s.allTime.removed} lines`
+  );
 }
 
 // ─── Build tables ─────────────────────────────────────────────────────────────
 
-function buildTable(getCount) {
+function buildTable(getPeriod) {
   const rows = [];
-  let grand = 0;
+  let grandCommits = 0, grandAdded = 0, grandRemoved = 0;
 
   for (const [category, repos] of Object.entries(CATEGORIES)) {
-    const total = repos.reduce((sum, r) => sum + (getCount(r) || 0), 0);
-    if (total > 0) {
-      rows.push({ category, total });
-      grand += total;
+    let commits = 0, added = 0, removed = 0;
+    for (const r of repos) {
+      const p = getPeriod(r);
+      if (p) { commits += p.commits; added += p.added; removed += p.removed; }
+    }
+    if (commits > 0 || added > 0) {
+      rows.push({ category, commits, added, removed });
+      grandCommits += commits;
+      grandAdded   += added;
+      grandRemoved += removed;
     }
   }
 
-  rows.sort((a, b) => b.total - a.total);
+  rows.sort((a, b) => b.commits - a.commits);
 
-  const header = `| Area | Commits |\n|---|---|\n`;
+  const fmt = (n) => n.toLocaleString("en-US");
+  const header = `| Area | Commits | + Lines added | − Lines removed | Δ Net growth |\n|---|---|---|---|---|\n`;
   const body = rows
-    .map((r) => `| ${r.category} | ${r.total.toLocaleString("en-US")} |`)
+    .map((r) => `| ${r.category} | ${fmt(r.commits)} | ${fmt(r.added)} | ${fmt(r.removed)} | +${fmt(r.added - r.removed)} |`)
     .join("\n");
-  const footer = `\n| **Total** | **${grand.toLocaleString("en-US")}** |`;
+  const footer = `\n| **Total** | **${fmt(grandCommits)}** | **${fmt(grandAdded)}** | **${fmt(grandRemoved)}** | **+${fmt(grandAdded - grandRemoved)}** |`;
 
   return `${header}${body}${footer}`;
 }
@@ -245,6 +287,7 @@ ${buildTable((r) => stats[r]?.year)}
 
 ### 📆 ${lastMonthLabel}
 ${buildTable((r) => stats[r]?.lastMonth)}
+
 `;
 
 // ─── Update README ────────────────────────────────────────────────────────────
