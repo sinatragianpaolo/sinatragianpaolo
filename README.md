@@ -63,33 +63,34 @@
 > Last updated on February 19, 2026
 
 ### 📊 All time
-| Area | Commits |
-|---|---|
-| 🔧 Backend API | 1,533 |
-| ⚛️ Frontend | 399 |
-| 🗄️ Database | 192 |
-| ☁️ Infrastructure & DevOps | 99 |
-| 🧰 Tooling & Libraries | 59 |
-| 🤖 AI & Automation | 51 |
-| **Total** | **2,333** |
+| Area | Commits | + Lines added | − Lines removed | Δ Net growth |
+|---|---|---|---|---|
+| 🔧 Backend API | 1,533 | 108,930 | 66,557 | +42,373 |
+| ⚛️ Frontend | 399 | 17,807 | 7,576 | +10,231 |
+| 🗄️ Database | 192 | 7,505 | 3,067 | +4,438 |
+| ☁️ Infrastructure & DevOps | 99 | 7,482 | 2,782 | +4,700 |
+| 🧰 Tooling & Libraries | 59 | 2,237 | 664 | +1,573 |
+| 🤖 AI & Automation | 51 | 14,229 | 8,828 | +5,401 |
+| **Total** | **2,333** | **158,190** | **89,474** | **+68,716** |
 
 ### 🗓 2026
-| Area | Commits |
-|---|---|
-| 🔧 Backend API | 79 |
-| 🤖 AI & Automation | 51 |
-| ⚛️ Frontend | 17 |
-| 🗄️ Database | 9 |
-| **Total** | **156** |
+| Area | Commits | + Lines added | − Lines removed | Δ Net growth |
+|---|---|---|---|---|
+| 🔧 Backend API | 79 | 16,579 | 11,966 | +4,613 |
+| 🤖 AI & Automation | 51 | 14,229 | 8,828 | +5,401 |
+| ⚛️ Frontend | 17 | 1,387 | 99 | +1,288 |
+| 🗄️ Database | 9 | 741 | 61 | +680 |
+| **Total** | **156** | **32,936** | **20,954** | **+11,982** |
 
 ### 📆 January 2026
-| Area | Commits |
-|---|---|
-| 🔧 Backend API | 47 |
-| 🤖 AI & Automation | 8 |
-| 🗄️ Database | 7 |
-| ⚛️ Frontend | 4 |
-| **Total** | **66** |
+| Area | Commits | + Lines added | − Lines removed | Δ Net growth |
+|---|---|---|---|---|
+| 🔧 Backend API | 47 | 14,570 | 11,803 | +2,767 |
+| 🤖 AI & Automation | 8 | 13,098 | 8,621 | +4,477 |
+| 🗄️ Database | 7 | 497 | 61 | +436 |
+| ⚛️ Frontend | 4 | 5 | 6 | +-1 |
+| **Total** | **66** | **28,170** | **20,491** | **+7,679** |
+
 <!-- COMMIT_STATS_END -->
 
 ---
