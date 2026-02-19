@@ -76,6 +76,8 @@ const REPOS = [
   { org: "AppQuality", name: "openapi-sort" },
   { org: "AppQuality", name: "createDemoEnvironment" },
   { org: "AppQuality", name: "prototype-modularization" },
+  // Personal Projects
+  { org: "sinatragianpaolo", name: "arduino-weather-station" },
 ];
 
 // ─── Category mapping ─────────────────────────────────────────────────────────
@@ -124,6 +126,9 @@ const CATEGORIES = {
     "prototype-modularization",
     "unguess-cms-api",
     "unguess-docs",
+  ],
+  "🏠 Personal Projects": [
+    "arduino-weather-station",
   ],
 };
 
