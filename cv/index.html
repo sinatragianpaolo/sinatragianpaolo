@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gianpaolo Sinatra – CV</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1e3a5f;
+      --accent:  #2563eb;
+      --text:    #1a1a1a;
+      --muted:   #6b7280;
+      --border:  #e5e7eb;
+      --bg-side: #f0f4f8;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: #e5e7eb;
+      line-height: 1.55;
+    }
+
+    /* ── Top-right controls ──────────────────────── */
+    #top-controls {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    /* ── Lang toggle ─────────────────────────────── */
+    #lang-toggle {
+      display: flex;
+      gap: 4px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    #lang-toggle button {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all .15s;
+    }
+    #lang-toggle button.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ── Page ────────────────────────────────────── */
+    .page {
+      max-width: 900px;
+      margin: 32px auto;
+      background: white;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      grid-template-rows: auto 1fr;
+      box-shadow: 0 4px 24px rgba(0,0,0,.15);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ── Header ──────────────────────────────────── */
+    header {
+      grid-column: 1 / -1;
+      background: var(--primary);
+      color: white;
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,.3);
+    }
+    header h1 { font-size: 28px; font-weight: 700; letter-spacing: -.5px; }
+    header .role { font-size: 15px; opacity: .85; margin-top: 4px; }
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-top: 10px;
+      font-size: 13px;
+      opacity: .9;
+    }
+    .contacts a { color: white; text-decoration: none; }
+    .contacts a:hover { text-decoration: underline; }
+
+    /* ── Sidebar ─────────────────────────────────── */
+    aside {
+      background: var(--bg-side);
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
+    }
+
+    /* ── Main ────────────────────────────────────── */
+    main {
+      padding: 28px 32px;
+    }
+
+    /* ── Sections ────────────────────────────────── */
+    section { margin-bottom: 26px; }
+    section:last-child { margin-bottom: 0; }
+
+    h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+    }
+
+    /* ── Experience entry ────────────────────────── */
+    .entry { margin-bottom: 18px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .entry-header h3 { font-size: 15px; font-weight: 600; color: var(--primary); }
+    .entry-header .company { font-size: 13px; font-weight: 600; color: var(--accent); }
+    .entry-header .period {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .entry p, .entry ul { margin-top: 6px; color: #374151; font-size: 13.5px; }
+    .entry ul { padding-left: 16px; }
+    .entry ul li { margin-bottom: 3px; }
+
+    /* ── Skills ──────────────────────────────────── */
+    .skill-group { margin-bottom: 14px; }
+    .skill-group h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .tag {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .tag.main {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* ── Education ───────────────────────────────── */
+    .edu { margin-bottom: 12px; }
+    .edu h3 { font-size: 13.5px; font-weight: 600; color: var(--primary); }
+    .edu p { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Project ─────────────────────────────────── */
+    .project { margin-bottom: 14px; }
+    .project h3 { font-size: 13.5px; font-weight: 600; color: var(--primary); }
+    .project h3 a { color: inherit; text-decoration: none; }
+    .project h3 a:hover { text-decoration: underline; }
+    .project p { font-size: 13px; color: #374151; margin-top: 4px; }
+
+    /* ── Print ───────────────────────────────────── */
+    /* ── PDF button ──────────────────────────────── */
+    #pdf-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .15s;
+    }
+    #pdf-btn:hover { background: #1d4ed8; }
+
+    @media print {
+      body { background: white; font-size: 12px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; max-width: 100%; }
+      #top-controls { display: none; }
+      .entry { page-break-inside: avoid; }
+    }
+
+    /* ── Lang visibility ─────────────────────────── */
+    body.it .en { display: none; }
+    body.en .it { display: none; }
+  </style>
+</head>
+<body class="it">
+
+  <!-- Top-right controls -->
+  <div id="top-controls">
+    <button id="pdf-btn" onclick="window.print()">
+      ⬇️ <span class="it">Scarica PDF</span><span class="en">Download PDF</span>
+    </button>
+    <div id="lang-toggle">
+      <button class="active" onclick="setLang('it')">🇮🇹 IT</button>
+      <button onclick="setLang('en')">🇬🇧 EN</button>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ── Header ── -->
+    <header>
+      <img class="avatar" src="https://github.com/sinatragianpaolo.png" alt="Gianpaolo Sinatra" />
+      <div>
+        <h1>Gianpaolo Sinatra</h1>
+        <div class="role">
+          <span class="it">Full-Stack Engineer · Remote · Dipendente &amp; Freelance (P.IVA)</span>
+          <span class="en">Full-Stack Engineer · Remote · Employee &amp; Freelancer (VAT registered)</span>
+        </div>
+        <div class="contacts">
+          <a href="mailto:gianpaolosinatra@gmail.com">✉️ gianpaolosinatra@gmail.com</a>
+          <a href="https://github.com/sinatragianpaolo" target="_blank">🐙 github.com/sinatragianpaolo</a>
+          <a href="https://linkedin.com/in/gianpaolosinatra" target="_blank">💼 linkedin.com/in/gianpaolosinatra</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Sidebar ── -->
+    <aside>
+
+      <section>
+        <h2><span class="it">Competenze</span><span class="en">Skills</span></h2>
+
+        <div class="skill-group">
+          <h3>Backend</h3>
+          <div class="tags">
+            <span class="tag main">TypeScript</span>
+            <span class="tag main">Node.js</span>
+            <span class="tag main">Express.js</span>
+            <span class="tag main">OpenAPI</span>
+            <span class="tag main">Jest / TDD</span>
+            <span class="tag">Knex.js</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">REST API</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Frontend</h3>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Redux</span>
+            <span class="tag">Vite</span>
+            <span class="tag">Playwright</span>
+            <span class="tag">Cypress</span>
+            <span class="tag">Storybook</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Cloud & DevOps</h3>
+          <div class="tags">
+            <span class="tag">AWS CDK</span>
+            <span class="tag">Lambda</span>
+            <span class="tag">EC2 / ALB</span>
+            <span class="tag">CloudFront</span>
+            <span class="tag">OpenSearch</span>
+            <span class="tag">Docker</span>
+            <span class="tag">GitHub Actions</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3><span class="it">Altro</span><span class="en">Other</span></h3>
+          <div class="tags">
+            <span class="tag">Shell / Bash</span>
+            <span class="tag">Mastra (AI)</span>
+            <span class="tag">PHP / Laravel</span>
+            <span class="tag">Python</span>
+            <span class="tag">Arduino</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="it">Formazione</span><span class="en">Education</span></h2>
+
+        <div class="edu">
+          <h3>ITS ICT Foundation</h3>
+          <p>
+            <span class="it">Diploma di Specializzazione (QEQ liv.5)<br>Integrated Backend Services · 2020</span>
+            <span class="en">Advanced Diploma (EQF lev.5)<br>Integrated Backend Services · 2020</span>
+          </p>
+        </div>
+
+        <div class="edu">
+          <h3>
+            <span class="it">Università G. Marconi</span>
+            <span class="en">Università G. Marconi</span>
+          </h3>
+          <p>
+            <span class="it">Ingegneria Informatica · 2016–2019</span>
+            <span class="en">Computer Engineering · 2016–2019</span>
+          </p>
+        </div>
+
+        <div class="edu">
+          <h3><span class="it">Liceo Scientifico</span><span class="en">Science High School</span></h3>
+          <p>2006–2012</p>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="it">Lingue</span><span class="en">Languages</span></h2>
+        <div class="tags">
+          <span class="tag"><span class="it">Italiano · Madrelingua</span><span class="en">Italian · Native</span></span>
+          <span class="tag"><span class="it">Inglese · Intermedio</span><span class="en">English · Intermediate</span></span>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- ── Main ── -->
+    <main>
+
+      <section>
+        <h2><span class="it">Esperienza</span><span class="en">Experience</span></h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <span class="company">UNGUESS / AppQuality</span>
+              <h3>Software Engineer</h3>
+            </div>
+            <span class="period">
+              <span class="it">feb 2021 – presente · 5+ anni · Full remote</span>
+              <span class="en">Feb 2021 – present · 5+ years · Full remote</span>
+            </span>
+          </div>
+          <ul>
+            <li>
+              <span class="it">Sviluppo REST API con Node.js/Express e approccio spec-first OpenAPI, con oltre 1.900 commit tra <em>tryber-api</em> e <em>unguess-api</em></span>
+              <span class="en">REST API development with Node.js/Express using spec-first OpenAPI approach, with 1,900+ commits across <em>tryber-api</em> and <em>unguess-api</em></span>
+            </li>
+            <li>
+              <span class="it">TDD rigoroso con Jest: suite di oltre 1.200 file di spec mantenuti e aggiornati continuamente</span>
+              <span class="en">Rigorous TDD with Jest: suite of 1,200+ spec files continuously maintained</span>
+            </li>
+            <li>
+              <span class="it">Migrazioni e schema design su MySQL con Knex.js in un monorepo condiviso</span>
+              <span class="en">MySQL schema design and migrations with Knex.js in a shared monorepo</span>
+            </li>
+            <li>
+              <span class="it">Sviluppo frontend con React, Redux e Vite; E2E testing con Playwright e Cypress</span>
+              <span class="en">Frontend development with React, Redux and Vite; E2E testing with Playwright and Cypress</span>
+            </li>
+            <li>
+              <span class="it">Infrastructure as Code con AWS CDK: Lambda, EC2/ASG, ALB, CloudFront, OpenSearch</span>
+              <span class="en">Infrastructure as Code with AWS CDK: Lambda, EC2/ASG, ALB, CloudFront, OpenSearch</span>
+            </li>
+            <li>
+              <span class="it">Sviluppo agenti AI con framework Mastra e vector search su OpenSearch Serverless</span>
+              <span class="en">AI agent development with Mastra framework and vector search on OpenSearch Serverless</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <span class="company">Droplet</span>
+              <h3>Full-Stack Developer</h3>
+            </div>
+            <span class="period">
+              <span class="it">nov 2019 – gen 2021 · 1 anno 3 mesi · Torino</span>
+              <span class="en">Nov 2019 – Jan 2021 · 1 year 3 months · Turin</span>
+            </span>
+          </div>
+          <ul>
+            <li>
+              <span class="it">Sviluppo di un CMS web in Laravel 7 per la gestione clienti e acquisti</span>
+              <span class="en">Development of a Laravel 7 CMS for customer and purchase management</span>
+            </li>
+            <li>
+              <span class="it">Integrazione con servizi di mail marketing (MailUp) via API e sincronizzazione con e-commerce Magento</span>
+              <span class="en">Integration with email marketing services (MailUp) via API and synchronization with Magento e-commerce</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <span class="company">AgnaiCommunication</span>
+              <h3>E-commerce Developer</h3>
+            </div>
+            <span class="period">
+              <span class="it">mar 2018 – set 2018 · 7 mesi · Trapani</span>
+              <span class="en">Mar 2018 – Sep 2018 · 7 months · Trapani</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <span class="company">Appleseed srls</span>
+              <h3>Adwords Campaign Manager</h3>
+            </div>
+            <span class="period">
+              <span class="it">apr 2017 – giu 2017 · 3 mesi · Trapani</span>
+              <span class="en">Apr 2017 – Jun 2017 · 3 months · Trapani</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="it">Progetti personali</span><span class="en">Personal Projects</span></h2>
+
+        <div class="project">
+          <h3>
+            🌤️ <a href="https://github.com/sinatragianpaolo/arduino-weather-station" target="_blank">arduino-weather-station</a>
+          </h3>
+          <p>
+            <span class="it">Stazione meteo solare autonoma con Arduino Nano ESP32, display e-ink, sensori DHT11/MQ-135 e notifiche Telegram. Deep sleep per ottimizzare il consumo energetico (~10µA in standby).</span>
+            <span class="en">Autonomous solar-powered weather station using Arduino Nano ESP32, e-ink display, DHT11/MQ-135 sensors and Telegram notifications. Deep sleep for optimized power consumption (~10µA in standby).</span>
+          </p>
+        </div>
+
+        <div class="project">
+          <h3>
+            📊 <a href="https://github.com/sinatragianpaolo/sinatragianpaolo" target="_blank">GitHub Profile Stats</a>
+          </h3>
+          <p>
+            <span class="it">Profilo GitHub con statistiche commit aggiornate automaticamente via GitHub Actions: blobless clone dei repository, conteggio commit e righe di codice per area tecnologica.</span>
+            <span class="en">GitHub profile with commit statistics auto-updated via GitHub Actions: blobless clone of repositories, commit and lines-of-code counting per technology area.</span>
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = lang;
+      document.querySelectorAll('#lang-toggle button').forEach((btn, i) => {
+        btn.classList.toggle('active', (lang === 'it' && i === 0) || (lang === 'en' && i === 1));
+      });
+    }
+  </script>
+
+</body>
+</html>
