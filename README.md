@@ -28,17 +28,30 @@
 
 <div align="center">
 
-**Backend**<br/>
-<img src="https://skillicons.dev/icons?i=ts,nodejs,express,jest&theme=dark" alt="Backend skills" />
+<strong>Backend</strong><br/>
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" />
+<img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" />
+<img src="https://img.shields.io/badge/OpenAPI-6BA539?style=for-the-badge&logo=openapiinitiative&logoColor=white" />
 
-**Frontend**<br/>
-<img src="https://skillicons.dev/icons?i=react,redux,vite,figma&theme=dark" alt="Frontend skills" />
+<br/><br/><strong>Frontend</strong><br/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white" />
+<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+<img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" />
 
-**Cloud & DevOps**<br/>
-<img src="https://skillicons.dev/icons?i=aws,docker,githubactions,mysql&theme=dark" alt="Cloud skills" />
+<br/><br/><strong>Cloud & DevOps</strong><br/>
+<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-web-services&logoColor=white" />
+<img src="https://img.shields.io/badge/AWS_CDK-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white" />
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
 
-**AI & Automation**<br/>
-<img src="https://skillicons.dev/icons?i=python,tensorflow&theme=dark" alt="AI skills" />
+<br/><br/><strong>AI & Automation</strong><br/>
+<img src="https://img.shields.io/badge/Mastra-000000?style=for-the-badge&logo=ai&logoColor=white" />
+<img src="https://img.shields.io/badge/OpenSearch-005EB8?style=for-the-badge&logo=opensearch&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
 
 </div>
 
