@@ -60,28 +60,36 @@
 ## 📈 Commit Activity
 
 <!-- COMMIT_STATS_START -->
-> Aggiornato il 19 febbraio 2026
+> Last updated on February 19, 2026
 
-### 📊 Da sempre
-| Area | Commit |
+### 📊 All time
+| Area | Commits |
 |---|---|
-| 🔧 Backend API | 1.993 |
-| ⚛️ Frontend | 684 |
-| 🗄️ Database | 213 |
-| ☁️ Infrastructure & DevOps | 112 |
-| 🤖 AI & Automation | 42 |
-| 🧰 Tooling & Libraries | 21 |
-| **Totale** | **3.065** |
+| 🔧 Backend API | 1,533 |
+| ⚛️ Frontend | 399 |
+| 🗄️ Database | 192 |
+| ☁️ Infrastructure & DevOps | 99 |
+| 🧰 Tooling & Libraries | 59 |
+| 🤖 AI & Automation | 51 |
+| **Total** | **2,333** |
 
 ### 🗓 2026
-| Area | Commit |
+| Area | Commits |
 |---|---|
-| **Totale** | **–** |
+| 🔧 Backend API | 79 |
+| 🤖 AI & Automation | 51 |
+| ⚛️ Frontend | 17 |
+| 🗄️ Database | 9 |
+| **Total** | **156** |
 
-### 📆 Gennaio 2026
-| Area | Commit |
+### 📆 January 2026
+| Area | Commits |
 |---|---|
-| **Totale** | **–** |
+| 🔧 Backend API | 47 |
+| 🤖 AI & Automation | 8 |
+| 🗄️ Database | 7 |
+| ⚛️ Frontend | 4 |
+| **Total** | **66** |
 <!-- COMMIT_STATS_END -->
 
 ---
