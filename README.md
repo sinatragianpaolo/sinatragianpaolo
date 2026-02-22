@@ -61,19 +61,14 @@
 
 <!-- COMMIT_STATS_START -->
 
-> Last updated on February 19, 2026
+> Aggiornato automaticamente — febbraio 2026
 
-| Area | Commits | + Lines added | − Lines removed | Δ Net growth |
-|---|---|---|---|---|
-| 🔧 Backend API | 1,993 | 117,363 | 72,152 | +45,211 |
-| ⚛️ Frontend | 720 | 20,121 | 10,520 | +9,601 |
-| 🤖 AI & Automation | 49 | 20,778 | 10,777 | +10,001 |
-| 🗄️ Database | 213 | 8,028 | 3,527 | +4,501 |
-| ☁️ Infrastructure & DevOps | 77 | 7,810 | 3,487 | +4,323 |
-| 🧰 Tooling & Libraries | 13 | 1,281 | 553 | +728 |
-| 🏠 Personal Projects | 1 | 295 | 1 | +294 |
-| **Total** | **3,066** | **175,676** | **101,017** | **+74,659** |
-
+| Area | Commits |
+|---|---|
+| 🔧 Backend API | 411 |
+| ⚛️ Frontend | 396 |
+| 🤖 AI & Automation | 7 |
+| **Totale** | **814** |
 <!-- COMMIT_STATS_END -->
 
 ---
