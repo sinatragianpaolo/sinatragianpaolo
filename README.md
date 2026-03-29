@@ -65,10 +65,10 @@
 
 | Area | Commits |
 |---|---|
-| ⚛️ Frontend | 426 |
+| ⚛️ Frontend | 432 |
 | 🔧 Backend API | 414 |
 | 🤖 AI & Automation | 7 |
-| **Totale** | **847** |
+| **Totale** | **853** |
 <!-- COMMIT_STATS_END -->
 
 ---
