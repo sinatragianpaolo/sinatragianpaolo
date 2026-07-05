@@ -61,7 +61,7 @@
 
 <!-- COMMIT_STATS_START -->
 
-> Aggiornato automaticamente — giugno 2026
+> Aggiornato automaticamente — luglio 2026
 
 | Area | Commits |
 |---|---|
