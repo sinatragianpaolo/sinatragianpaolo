@@ -61,14 +61,14 @@
 
 <!-- COMMIT_STATS_START -->
 
-> Aggiornato automaticamente — luglio 2026
+> Aggiornato automaticamente — agosto 2026
 
 | Area | Commits |
 |---|---|
-| ⚛️ Frontend | 475 |
+| ⚛️ Frontend | 480 |
 | 🔧 Backend API | 414 |
 | 🤖 AI & Automation | 7 |
-| **Totale** | **896** |
+| **Totale** | **901** |
 <!-- COMMIT_STATS_END -->
 
 ---
